@@ -5,6 +5,9 @@
 *.exe
 *.out
 *.swp
+.vscode
+.bkp
+.dtmp
 .DS_Store
 .atom/
 .buildlog/
