@@ -15,7 +15,7 @@ Repository with labs and practice works for KPI CPP subject.
 - in your folder should be only files related to lab that you adding. 
 - in that folder, if you adding not only doc/docx file, should be that  kind of structure: 
 
-###secondName_variant
+### secondName_variant
 - program `(optional)`
   - exampleName.cpp `(optional)`
 - diagrams `(optional)`
