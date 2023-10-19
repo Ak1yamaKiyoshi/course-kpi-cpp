@@ -18,7 +18,7 @@ float evaluate_y(float x, float *a) {
     }
     return result;
 }
-
+/*
 int main() {
     float x, *a = new float;
 
@@ -30,8 +30,9 @@ int main() {
 
     return 0;
 }
+*/
 
-/*
+
 // Це не код, це просто коментарі :)
 void autotestForLab() {
     float a; 
@@ -43,25 +44,24 @@ void autotestForLab() {
         << "cd \"c:\\Users\\avoqu\\Documents\\Git\\course-kpi-cpp\\src\\lab_2\\kolosov_10\\program\\\" && g++ task2.cpp -o task2 && \"c:\\Users\\avoqu\\Documents\\Git\\course-kpi-cpp\\src\\lab_2\\kolosov_10\\program\"task2";
         std::cout << " \n    > Enter x and a value ( separate with spaces ) \n    enter x a:  ";
         std::cout << x << " " << a ; 
-        std::cout << "\n    - result:  " << evaluate_y(x, a);
+        std::cout << "\n    - result:  " << evaluate_y(x, &a);
     }
 }
-*/
 
-/*
+
+
 void manualTestForLab() {
     float x, a;
     std::cout << " > Enter x and a value ( separate with spaces ) \n enter x a:  ";
     std::cin >> x; 
-    std::cout << " - result:  " << evaluate_y(x, a);
+    std::cout << " - result:  " << evaluate_y(x, &a);
 }
 
 
 int main() {
 
-    //autotestForLab();
-    manualTestForLab();
+    autotestForLab();
+    //manualTestForLab();
 
     return 0;
 }
-*/

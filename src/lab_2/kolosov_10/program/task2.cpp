@@ -1,84 +1,53 @@
+
 #include <iostream>
 #include <cmath>
 
 using namespace std;
+struct Work {
+    char type; double amount;
+};
 
-void GetValuesFromTypeA(double fullAmount);
-void GetValuesFromTypeB(double fullAmount);
-void GetValuesFromTypeC(double fullAmount);
+struct Salary {
+    float netto; float tax;
+};
 
+/** @param h hours of work  */
+float formula(float h) {return sin(h) - pow(cos(h), 3) * sin(h*h - 4.2) + 4.27; }
+ 
+/** @brief {tax modifier, formula modifier} */
+const float modifiers[][2] = {
+    {0.2,  100.}, {0.15, 150.}, {0.1,  135.},
+};
+
+/** @brief calculates netto and tax of salary using formula and modifiers (mod, percentage) */
+Salary* evaluate (Salary *salary, float hours, float mod, float percentage) { 
+    salary->netto = mod*abs(formula(hours)+mod);
+    salary->tax = salary->netto * percentage;
+    return salary;
+}
+
+void printSalary(Work work) {
+    if (work.type < 'A' 
+     || work.type > 'C') return;
+
+    Salary *result = evaluate(
+        new Salary, work.amount, 
+        modifiers[toupper(work.type)-'A'][1], 
+        modifiers[toupper(work.type)-'A'][0]
+    ); 
+
+    cout << "\n < salary for " << work.amount 
+    << " hours of " << work.type << " work type >"
+    << "\n > netto salary:  "  << result->netto
+    << "\n > brutto salary: "  << result->netto - result->tax << "\n";
+    delete result;
+}
 
 int main() {
-    int workType;
-    cout << "What type of work u want choose\n" <<
-            "Enter value from 1 to 3\n" <<
-            "1 - Type of work A\n" <<
-            "2 - Type of work B\n" <<
-            "3 - Type of work C\n";
-    cin >> workType;
+    Work work;
 
-    if (typeOfWork < 1 || typeOfWork > 3) {
-        cout << "Nice joke";
-        return 0;
-    }
-
-    cout << "Enter full amount:";
-    double fullAmount;
-    cin >> fullAmount;
-    cout << endl;
-
-    if (fullAmount < 0 ) {
-        cout << "Nice joke";
-        return 0;
-    }
-
-    if (typeOfWork == 1){
-        GetValuesFromTypeA(fullAmount);
-    }else if(typeOfWork == 2){
-        GetValuesFromTypeB(fullAmount);
-    }else{
-        GetValuesFromTypeC(fullAmount);
-    }
-
-    return 0;
+    cout << " > Types of work: A, B and C\n Enter your type and hours you worked: ";
+    cin >> work.type >> work.amount; 
+    printSalary(work);
 }
 
-void GetValuesFromTypeA(double fullAmount){
-    double salaryWithOutTax, salaryWithTax, tax;
-    float percentageOfTask = 0.1;
-
-    salaryWithOutTax = 100*abs(pow(fullAmount,2))/(abs(4.5-9.7* sin(fullAmount-3.1))+50);
-    tax = salaryWithOutTax * percentageOfTask;
-    salaryWithTax = salaryWithOutTax - tax;
-
-    cout << "salary without tax: " << salaryWithOutTax << endl;
-    cout << "tax: " << tax << endl;
-    cout << "resulted salary: " << salaryWithTax << endl;
-
-}
-
-void GetValuesFromTypeB(double fullAmount){
-    double salaryWithOutTax, salaryWithTax, tax;
-    float percentageOfTask = 0.15;
-
-    salaryWithOutTax = 150* abs(13.4 * sin(-1.26 * fullAmount)* cos(abs(fullAmount/7.5)) + 100);
-    tax = salaryWithOutTax * percentageOfTask;
-    salaryWithTax = salaryWithOutTax - tax;
-
-    cout << "salary without tax: " << salaryWithOutTax << endl;
-    cout << "tax: " << tax << endl;
-    cout << "resulted salary: " << salaryWithTax << endl;
-}
-
-void GetValuesFromTypeC(double fullAmount){
-    double salaryWithOutTax, salaryWithTax, tax;
-    float percentageOfTask = 0.2;
-
-    salaryWithOutTax = 100*abs(2 * sin(abs(2*fullAmount))* cos(2*fullAmount)-11.6* sin(fullAmount/0.4 - 1) + 135) ;
-    tax = salaryWithOutTax * percentageOfTask;
-    salaryWithTax = salaryWithOutTax - tax;
-
-    cout << "salary without tax: " << salaryWithOutTax << endl;
-    cout << "tax: " << tax << endl;
-    cout << "resulted salary: " << salaryWithTax << endl;
-}
