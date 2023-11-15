@@ -1,0 +1,62 @@
+#include <iostream>
+#include <algorithm>
+#include <memory.h>
+
+int *createArray() {
+    int len;
+    std::cout << " > Enter length of array: ";
+    std::cin >> len;
+    int *array = new int[len];
+    for (int i = 0; i < len; i++) {
+        std::cout << " > array [" << i << "]:";
+        std::cin >> array[i];
+    }
+    return array;
+}
+
+int *printArray(int *array, int len) {
+    std::cout << "Array: ";
+    for (int *p = array; p < array+len; p++)
+        std::cout << *p << " ";
+    std::cout << std::endl;
+    return array;
+}
+
+bool numInArray(int num, int *array, size_t len) {
+    printArray(array, len  );
+    for (int i = 0; i < len; i++)
+        if (array[i] == num)
+            return true;
+    return false;
+}
+
+/*
+void copy(int *src, int *dst, int size)
+{
+   int longersize = sizeof(int)*size/sizeof(long int);
+   printf("%d\n", longersize);
+   for (long int *ptr = (long int*)src, *ptr2 = (long int*)dst;
+        ptr < (long int*)src + longersize;
+        ptr++, ptr2++)
+       *ptr2 = *ptr;
+   if (size%2 == 1)
+       *(dst+size-1) = *(src+size-1);}
+*/
+
+/* returns output array with unique numbers from array
+ * modifies entriesLen to be the length of the output array */
+//int *unique(int *array, int len) {
+//}
+
+int main () {
+    int *array = createArray();
+    printArray(array, 3);
+
+    //std::cout << " 5 in array: " << (numInArray(5, array, arrayLen) ? "Yes" : "No") << std::endl;
+
+    //std::cout << " <> Unique numbers: ";
+    //int *uniqueElements = unique(array, arrayLen);
+    //printArray(uniqueElements, sizeof(uniqueElements)/sizeof(int));
+    //delete array;
+    //delete uniqueElements;
+}
