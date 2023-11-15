@@ -17,7 +17,7 @@ double chord_p(func f, double *x0, double *x1) {
 
 double function(double x) {
     return 3 * pow(exp(1.0), -3*x);
-} 
+}
 
 int main() {
     double limA, limB;
@@ -28,6 +28,5 @@ int main() {
         double x = chord_p(function, &i, &j);
         std::cout << " > x: " << x << "\n";
     }
-    
     return 0;
 }
